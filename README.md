@@ -1,12 +1,34 @@
 Homework **HW-05**: locking, recursion, caching (memoization), generators, functional approach and decorators + optional CLI tasks.
 
+# Algorithmic Homework #5 
+
+Homework #5 from the course "Algorithms and Data Structures" in Python. The main goal is to deepen knowledge about:
+- recursion;
+- closures;
+- generators;
+- functional programming;
+- using decorators;
+- log analysis;
+- creating CLI bots;
+- testing and automation via GitHub Actions.
+
 ---
 
 ## Table of Contents
-- [Завдання 1 — кешування Фібоначчі (замикання + рекурсія)](#завдання-1--кешування-фібоначчі-замикання--рекурсія)
-- [Завдання 2 — generator_numbers та sum_profit (генератори)](#завдання-2--generator_numbers-та-sum_profit-генератори)
-- [Завдання 3 — Аналізатор журналів (CLI, необов'язково)](#завдання-3--аналізатор-журналів-cli-необовязково)
-- [Завдання 4 — Консольний бот з декоратором input_error](#завдання-4--консольний-бот-з-декоратором-input_error)
+
+- [Repository Structure](#-repository-structure)
+- [Installation & Setup](#️-installation--setup)
+- [Task 1 — caching_fibonacci (closure + recursion)](#-task-1--caching_fibonacci-closure--recursion)
+- [Task 2 — generator_numbers & sum_profit (generators)](#-task-2--generator_numbers--sum_profit-generators)
+- [Task 3 — Log Analyzer (CLI, optional)](#-task-3--log-analyzer-cli-optional)
+- [Task 4 — Console Bot with input_error decorator](#-task-4--console-bot-with-input_error-decorator)
+- [Tests & Linters](#-tests--linters)
+- [Notes](#-notes)
+- [License](#-license)
+
+---
+
+## Repository Structure
 
 ```bash
 goit-algo-hw-05/
@@ -14,29 +36,29 @@ goit-algo-hw-05/
 ├── ЛІЦЕНЗІЯ
 ├── pyproject.toml
 ├── .gitignore
-├── .pre-commit-config.yaml         # (необов'язково)
+├── .pre-commit-config.yaml         
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                  # Дії GitHub (тести + лінтери)
+│       └── ci.yml                  # GitHub Actions (Tests + Linters)
 ├── data/
-│   └── sample.log                  # зразок файлу журналу для Завдання 3
+│   └── sample.log                  # sample log file for Task 3
 ├── examples/
-│   ├── benchmark_fib.py           # Тест Фібоначчі
-│   ├── cli.py                     # CLI для завдання 1 (список/значення)
-│   └── parse_income.py            # CLI для завдання 2
+│   ├── benchmark_fib.py           # Fibonacci test
+│   ├── cli.py                     # CLI for task 1 (list/value)
+│   └── parse_income.py            # CLI for task 2
 ├── src/
 │   ├── __init__.py
-│   ├── task1_fibonacci_closure.py # Завдання 1
-│   ├── task2_income_generator.py  # Завдання 2
-│   ├── task3_log_analyzer.py      # Завдання 3
-│   └── task4_console_bot.py       # Завдання 4
+│   ├── task1_fibonacci_closure.py # Task 1
+│   ├── task2_income_generator.py  # Task 2
+│   ├── task3_log_analyzer.py      # Task 3
+│   └── task4_console_bot.py       # Task 4
 ├── utils/
 │   ├── __init__.py
-│   ├── decorators.py              # generic @safe (не обов'язково)
+│   ├── decorators.py              # generic @safe 
 │   ├── generators.py              # fib_generator(), window()
-│   ├── functional.py              # функції як аргументи (приклад)
-│   ├── main.py                    # CLI для завдання 3
-│   └── bot.py                     # CLI для завдання 4
+│   ├── functional.py              # functions as arguments
+│   ├── main.py                    # CLI for task 3
+│   └── bot.py                     # CLI for task 4
 ├── tests/
 │   ├── test_task1_fibonacci_closure.py
 │   ├── test_task2_income_generator.py

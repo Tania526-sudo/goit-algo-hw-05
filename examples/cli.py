@@ -5,8 +5,8 @@ from src.utils.generators import fib_generator
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--n", type=int, help="Обчислити F(n)")
-    p.add_argument("--list", dest="list_n", type=int, help="Вивести перші N чисел Фібоначчі")
+    p.add_argument("--n", type=int, help="Calculate F(n)")
+    p.add_argument("--list", dest="list_n", type=int, help="Display the first N Fibonacci numbers")
     args = p.parse_args()
 
     if args.n is not None:

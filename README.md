@@ -1,6 +1,6 @@
 # Algorithmic Homework #5
 
-Homework #5 from the course "Algorithms and Data Structures" in Python.  
+Homework #5 from the module "Functional Programming and Python Built-in Functions".  
 The main goal is to deepen knowledge about:
 
 - recursion;

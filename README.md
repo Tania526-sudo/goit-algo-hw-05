@@ -1,8 +1,8 @@
-Homework **HW-05**: locking, recursion, caching (memoization), generators, functional approach and decorators + optional CLI tasks.
+# Algorithmic Homework #5
 
-# Algorithmic Homework #5 
+Homework #5 from the course "Algorithms and Data Structures" in Python.  
+The main goal is to deepen knowledge about:
 
-Homework #5 from the course "Algorithms and Data Structures" in Python. The main goal is to deepen knowledge about:
 - recursion;
 - closures;
 - generators;
@@ -16,15 +16,15 @@ Homework #5 from the course "Algorithms and Data Structures" in Python. The main
 
 ## Table of Contents
 
-- [Repository Structure](#-repository-structure)
-- [Installation & Setup](#️-installation--setup)
-- [Task 1 — caching_fibonacci (closure + recursion)](#-task-1--caching_fibonacci-closure--recursion)
-- [Task 2 — generator_numbers & sum_profit (generators)](#-task-2--generator_numbers--sum_profit-generators)
-- [Task 3 — Log Analyzer (CLI, optional)](#-task-3--log-analyzer-cli-optional)
-- [Task 4 — Console Bot with input_error decorator](#-task-4--console-bot-with-input_error-decorator)
-- [Tests & Linters](#-tests--linters)
-- [Notes](#-notes)
-- [License](#-license)
+- [Repository Structure](#repository-structure)
+- [Installation & Setup](#installation--setup)
+- [Task 1 — caching_fibonacci (closure + recursion)](#task-1--caching_fibonacci-closure--recursion)
+- [Task 2 — generator_numbers & sum_profit (generators)](#task-2--generator_numbers--sum_profit-generators)
+- [Task 3 — Log Analyzer (CLI, optional)](#task-3--log-analyzer-cli-optional)
+- [Task 4 — Console Bot with input_error decorator](#task-4--console-bot-with-input_error-decorator)
+- [Tests & Linters](#tests--linters)
+- [Notes](#notes)
+- [License](#license)
 
 ---
 
@@ -64,4 +64,3 @@ goit-algo-hw-05/
 │   ├── test_task2_income_generator.py
 │   ├── test_task3_log_analyzer.py
 │   └── test_task4_console_bot.py
-```

@@ -3,48 +3,43 @@ Homework **HW-05**: locking, recursion, caching (memoization), generators, funct
 ---
 
 ## Table of Contents
-- [Repository Structure](#repository-structure)
-- [Installation & Setup](#installation--setup)
-- [Task 1 — caching_fibonacci (closure + recursion)](#task-1--caching_fibonacci-closure--recursion)
-- [Task 2 — generator_numbers & sum_profit (generators)](#task-2--generator_numbers--sum_profit-generators)
-- [Task 3 — Log Analyzer (CLI, optional)](#task-3--log-analyzer-cli-optional)
-- [Task 4 — Console Bot with input_error decorator](#task-4--console-bot-with-input_error-decorator)
-- [Tests & Linters](#tests--linters)
-- [Notes](#notes)
-- [License](#license)
+- [Завдання 1 — кешування Фібоначчі (замикання + рекурсія)](#завдання-1--кешування-фібоначчі-замикання--рекурсія)
+- [Завдання 2 — generator_numbers та sum_profit (генератори)](#завдання-2--generator_numbers-та-sum_profit-генератори)
+- [Завдання 3 — Аналізатор журналів (CLI, необов'язково)](#завдання-3--аналізатор-журналів-cli-необовязково)
+- [Завдання 4 — Консольний бот з декоратором input_error](#завдання-4--консольний-бот-з-декоратором-input_error)
 
----
+```bash
 goit-algo-hw-05/
 ├── README.md
-├── LICENSE
+├── ЛІЦЕНЗІЯ
 ├── pyproject.toml
 ├── .gitignore
-├── .pre-commit-config.yaml # (optional)
+├── .pre-commit-config.yaml         # (необов'язково)
 ├── .github/
-│ └── workflows/
-│ └── ci.yml # GitHub Actions (tests + linters)
+│   └── workflows/
+│       └── ci.yml                  # Дії GitHub (тести + лінтери)
 ├── data/
-│ └── sample.log # sample log file for Task 3
+│   └── sample.log                  # зразок файлу журналу для Завдання 3
 ├── examples/
-│ ├── benchmark_fib.py # Fibonacci benchmark
-│ ├── cli.py # CLI for Task 1 (list/value)
-│ └── parse_income.py # CLI for Task 2
+│   ├── benchmark_fib.py           # Тест Фібоначчі
+│   ├── cli.py                     # CLI для завдання 1 (список/значення)
+│   └── parse_income.py            # CLI для завдання 2
 ├── src/
-│ ├── init.py
-│ ├── task1_fibonacci_closure.py # Task 1
-│ ├── task2_income_generator.py # Task 2
-│ ├── task3_log_analyzer.py # Task 3
-│ ├── task4_console_bot.py # Task 4
-│ └── utils/
-│ ├── init.py
-│ ├── decorators.py # generic @safe (not required for HW)
-│ ├── generators.py # fib_generator(), window()
-│ └── functional.py # functions as arguments example
-├── main.py # CLI for Task 3
-├── bot.py # CLI for Task 4
-└── tests/
-├── test_task1_fibonacci_closure.py
-├── test_task2_income_generator.py
-├── test_task3_log_analyzer.py
-└── test_task4_console_bot.py
----
+│   ├── __init__.py
+│   ├── task1_fibonacci_closure.py # Завдання 1
+│   ├── task2_income_generator.py  # Завдання 2
+│   ├── task3_log_analyzer.py      # Завдання 3
+│   └── task4_console_bot.py       # Завдання 4
+├── utils/
+│   ├── __init__.py
+│   ├── decorators.py              # generic @safe (не обов'язково)
+│   ├── generators.py              # fib_generator(), window()
+│   ├── functional.py              # функції як аргументи (приклад)
+│   ├── main.py                    # CLI для завдання 3
+│   └── bot.py                     # CLI для завдання 4
+├── tests/
+│   ├── test_task1_fibonacci_closure.py
+│   ├── test_task2_income_generator.py
+│   ├── test_task3_log_analyzer.py
+│   └── test_task4_console_bot.py
+```

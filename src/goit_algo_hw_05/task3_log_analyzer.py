@@ -4,40 +4,40 @@ import sys
 from collections import Counter
 from typing import Dict, List
 
-# Допустимі рівні логування (у верхньому регістрі)
+# Supported log levels (upper case)
 VALID_LEVELS = {"INFO", "ERROR", "DEBUG", "WARNING"}
 
 
 def parse_log_line(line: str) -> Dict[str, str]:
     """
-    Парсить один рядок логу формату:
+    Parses a single log line in the format:
       YYYY-MM-DD HH:MM:SS LEVEL Message...
 
-    Повертає словник:
+    Returns a dict:
       {"date": str, "time": str, "level": str, "message": str}
 
-    Генерує ValueError, якщо формат некоректний або рівень невідомий.
+    Raises ValueError if the format is invalid or the level is unknown.
     """
     raw = line.strip()
     if not raw:
-        raise ValueError("Порожній рядок")
+        raise ValueError("Empty line")
 
-    parts = raw.split(maxsplit=3)  # очікуємо 4 частини
+    parts = raw.split(maxsplit=3)  # expect 4 tokens
     if len(parts) < 4:
-        raise ValueError("Неправильний формат логу (очікується 4 токени)")
+        raise ValueError("Invalid log format (expected 4 tokens)")
 
     date, time, level, message = parts
     level = level.upper()
     if level not in VALID_LEVELS:
-        raise ValueError(f"Невідомий рівень логування: {level}")
+        raise ValueError(f"Unknown log level: {level}")
 
     return {"date": date, "time": time, "level": level, "message": message}
 
 
 def load_logs(file_path: str) -> List[Dict[str, str]]:
     """
-    Зчитує файл та повертає список словників-логів.
-    Пропускає некоректні рядки, виводячи попередження у stderr.
+    Reads the file and returns a list of log-record dicts.
+    Skips malformed lines and prints warnings to stderr.
     """
     logs: List[Dict[str, str]] = []
     with open(file_path, "r", encoding="utf-8") as fh:
@@ -45,10 +45,7 @@ def load_logs(file_path: str) -> List[Dict[str, str]]:
             try:
                 rec = parse_log_line(line)
             except ValueError as e:
-                print(
-                    f"[WARN] Рядок {lineno} пропущено: {e}",
-                    file=sys.stderr,
-                )
+                print(f"[WARN] Line {lineno} skipped: {e}", file=sys.stderr)
                 continue
             logs.append(rec)
     return logs
@@ -56,8 +53,8 @@ def load_logs(file_path: str) -> List[Dict[str, str]]:
 
 def filter_logs_by_level(logs: List[Dict[str, str]], level: str) -> List[Dict[str, str]]:
     """
-    Повертає записи лише заданого рівня (case-insensitive).
-    Використано елемент функціонального програмування: filter + lambda.
+    Returns only records of the given level (case-insensitive).
+    Uses a functional programming element: filter + lambda.
     """
     level_up = level.upper()
     return list(filter(lambda rec: rec["level"] == level_up, logs))
@@ -65,29 +62,29 @@ def filter_logs_by_level(logs: List[Dict[str, str]], level: str) -> List[Dict[st
 
 def count_logs_by_level(logs: List[Dict[str, str]]) -> Dict[str, int]:
     """
-    Повертає словник: рівень -> кількість.
-    Забезпечує наявність усіх відомих рівнів (у т.ч. з нулем).
+    Returns a dict: level -> count.
+    Ensures presence of all known levels (including zeros).
     """
     ctr = Counter(rec["level"] for rec in logs)
-    # Гарантуємо ключі для всіх рівнів
+    # Ensure keys for all levels
     return {lvl: ctr.get(lvl, 0) for lvl in ("INFO", "DEBUG", "ERROR", "WARNING")}
 
 
 def display_log_counts(counts: Dict[str, int]) -> None:
     """
-    Друкує просту таблицю зі статистикою за рівнями.
+    Prints a simple table with per-level statistics.
     """
-    # Відповідаємо прикладу: порядок INFO, DEBUG, ERROR, WARNING
-    rows = [("Рівень логування", "Кількість"),
-            ("-----------------", "----------")]
+    # Match the example order: INFO, DEBUG, ERROR, WARNING
+    rows = [("Log Level", "Count"), ("----------------", "-----")]
     for lvl in ("INFO", "DEBUG", "ERROR", "WARNING"):
         rows.append((lvl, str(counts.get(lvl, 0))))
 
-    # Динамічні ширини колонок
+    # Dynamic column widths
     col1 = max(len(r[0]) for r in rows)
     col2 = max(len(r[1]) for r in rows)
     for i, (c1, c2) in enumerate(rows):
-        if i == 1:  # розділовий рядок — друкуємо як є
+        if i == 1:  # separator row — print as is
             print(f"{c1:<{col1}} | {c2:<{col2}}")
         else:
             print(f"{c1:<{col1}} | {c2:<{col2}}")
+

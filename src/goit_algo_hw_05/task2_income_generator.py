@@ -4,54 +4,54 @@ import re
 from decimal import Decimal, getcontext
 from typing import Callable, Generator, Iterable
 
-# Точність для Decimal (достатньо для фінансових обчислень у межах ДЗ)
+# Precision for Decimal
 getcontext().prec = 28
 
-# Числа мають бути чітко відокремлені пробілами з обох боків.
-# (?<!\S)  — зліва немає не-пробільного символу (тобто або пробіл, або початок рядка)
-# (?!\S)   — справа немає не-пробільного символу (тобто або пробіл, або кінець рядка)
+# Numbers should be clearly separated by spaces on both sides.
+# (?<!\S)  — there is no non-whitespace character on the left (i.e. either a space or the beginning of a line)
+# (?!\S)   — there is no non-whitespace character on the right (i.e. either a space or the end of a line)
 _NUMBER_TOKEN = re.compile(r"(?<!\S)[+-]?\d+(?:\.\d+)?(?!\S)")
 
 
 def generator_numbers(text: str) -> Generator[Decimal, None, None]:
     """
-    Повертає генератор Decimal-чисел, виділених із тексту,
-    які є окремими токенами (відокремлені пробілами з обох боків).
+    Returns a generator of Decimal numbers extracted from text,
+    which are separate tokens (separated by spaces on both sides).
 
-    Приклади матчів: '100', '-2', '27.45', '+0.99'
-    Не матчить: '1000,50' (кома замість крапки), '10. ' (без цифр після крапки),
-                'abc123', '123abc', '1,234.00' (роздільники тисяч)
+    Examples of matches: '100', '-2', '27.45', '+0.99'
+    Does not match: '1000,50' (comma instead of dot), '10. ' (no digits after dot),
+                    'abc123', '123abc', '1,234.00' (thousand separators)
 
     Parameters
     ----------
     text : str
-        Вхідний рядок для аналізу.
+        Input string to parse.
 
     Yields
     ------
     Decimal
-        Знайдене число у вигляді Decimal (безпечніше для фінансів, ніж float).
+        Found number as Decimal (safer for financials than float).
     """
     for m in _NUMBER_TOKEN.finditer(text):
-        # Decimal точніше обробляє фінансові значення, ніж float
+        # Decimal handles financial values ​​more accurately than float
         yield Decimal(m.group(0))
 
 
 def sum_profit(text: str, func: Callable[[str], Iterable[Decimal]]) -> Decimal:
     """
-    Обчислює суму (загальний прибуток), використовуючи передану функцію-генератор чисел.
+    Calculates the sum (total profit) using the provided number generator function.
 
     Parameters
     ----------
     text : str
-        Вхідний рядок з числами (докладні умови — див. generator_numbers).
+        Input string with numbers (detailed conditions — see generator_numbers).
     func : Callable[[str], Iterable[Decimal]]
-        Функція, яка приймає текст і повертає ітерабельні Decimal-значення.
+        Function that takes text and returns iterable Decimal values.
 
     Returns
     -------
     Decimal
-        Сума всіх чисел з тексту.
+        Sum of all numbers from the text.
     """
     total = Decimal("0")
     for value in func(text):
@@ -60,10 +60,10 @@ def sum_profit(text: str, func: Callable[[str], Iterable[Decimal]]) -> Decimal:
 
 
 if __name__ == "__main__":
-    # Невелика демонстрація
+    # Small demonstration
     demo = (
-        "Загальний дохід працівника складається з декількох частин: "
-        "1000.01 як основний дохід, доповнений додатковими надходженнями "
-        "27.45 і 324.00 доларів."
+        "An employee's total income consists of several parts: "
+        "1000.01 as the main income, supplemented by additional revenues "
+        "27.45 and 324.00 dollars."
     )
     print(sum_profit(demo, generator_numbers))  # 1351.46

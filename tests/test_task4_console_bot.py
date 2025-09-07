@@ -15,7 +15,7 @@ def test_add_contact_ok():
 
 def test_add_contact_value_error():
     contacts = {}
-    msg = add_contact(["Ann"], contacts)  # не вистачає телефону
+    msg = add_contact(["Ann"], contacts)  
     assert msg == "Give me name and phone please."
     assert "Ann" not in contacts
 
